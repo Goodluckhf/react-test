@@ -1,16 +1,25 @@
 {
-  "name": "new-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+	"name": "new-app",
+	"version": "0.1.0",
+	"private": true,
+	"proxy": "http://localhost:3011",
+	"dependencies": {
+		"express": "^4.16.2",
+		"react": "^16.1.1",
+		"react-dom": "^16.1.1",
+		"react-scripts": "1.0.17",
+		"body-parser": "~1.18.2",
+		"cookie-parser": "~1.4.3",
+		"debug": "~2.6.9",
+		"ejs": "~2.5.7",
+		"morgan": "~1.9.0",
+		"serve-favicon": "~2.4.5"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"server": "bin/dev-start.sh"
+	}
 }
