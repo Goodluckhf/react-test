@@ -26,6 +26,7 @@ try {
 		throw error;
 	}
 }
+
 const debug  = require('debug')('react-backend:server');
 const http   = require('http');
 const config = require('conf/index');

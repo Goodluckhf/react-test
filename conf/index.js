@@ -3,12 +3,20 @@ const fs = require('fs');
 const _  = require('lodash');
 
 //Собираем конфиг
-const defaultPath = './conf/default/';
+
+const confDir = './conf';
+const defaultPath = `${confDir}/default/`;
 
 const defaultConfig = fs
 	.readdirSync(defaultPath)
-	.reduce((conf, fileName) => {
-		conf[fileName] = require(fileName);
+	.map(fileName => {
+		return fileName.replace(/(.*)\.js/, (a, b) => {
+			return b;
+		});
+	}).reduce((conf, fileName) => {
+		const moduleName = `./default/${fileName}`;
+		conf[fileName] = require(moduleName);
+		return conf;
 	}, {});
 
 const envConfig = require('./config');
