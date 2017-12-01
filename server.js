@@ -1,12 +1,10 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
 let app;
 
 try {
-	app = require('../app');
+	app = require('./app');
 } catch (error) {
 	console.error(`Link error`, {error});
 	
@@ -28,14 +26,13 @@ try {
 		throw error;
 	}
 }
-const debug = require('debug')('react-backend:server');
-const http = require('http');
-
+const debug  = require('debug')('react-backend:server');
+const http   = require('http');
+const config = require('conf/index');
 /**
  * Get port from environment and store in Express.
  */
-
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(config.app.port || process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -43,11 +40,6 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
 
 // Кастомное событие сигнализирующие, что необходимо остановить сервер 
 process.on('finishProcess', (reason, exitTimeout) => {

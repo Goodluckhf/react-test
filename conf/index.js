@@ -1,13 +1,18 @@
 'use strict';
 const fs = require('fs');
+const _  = require('lodash');
 
+//Собираем конфиг
 const defaultPath = './conf/default/';
 
-console.log(fs.readdirSync(defaultPath));
+const defaultConfig = fs
+	.readdirSync(defaultPath)
+	.reduce((conf, fileName) => {
+		conf[fileName] = require(fileName);
+	}, {});
 
-const config = {};
+const envConfig = require('./config');
 
+const config = _.merge(defaultConfig, envConfig);
 
-module.exports = {
-	
-};
+module.exports = config;
