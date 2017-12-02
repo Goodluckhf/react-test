@@ -3,6 +3,6 @@ module.exports = {
 		port: 3011
 	},
 	db: {
-		url: 'mongodb://localhost/react1'
+		url: 'mongodb://localhost:27018/react1'
 	}
 };

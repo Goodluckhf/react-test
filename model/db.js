@@ -4,7 +4,7 @@ const _        = require('lodash');
 const config   = require('conf/index');
 
 mongoose.Promise = Promise;
-
+mongoose.set("debug", true)
 class Connection {
 
 	constructor(config) {
@@ -20,7 +20,7 @@ class Connection {
 			console.error('\x1b[31mm%s\x1b[0m', `connection to db failed: ${err.toString()}`);
 		};
 
-		mongoose.createConnection(this.config.url, {
+		mongoose.connect(this.config.url, {
 			reconnectInterval : this.config.reconnectInterval,
 			reconnectTries    : this.config.reconnectTries,
 			useMongoClient    : this.config.useMongoClient,

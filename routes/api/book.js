@@ -1,24 +1,40 @@
 'use strict';
 
-const express = require('express');
-const router  = express.Router();
-const m       = require('model/index');
+const express      = require('express');
+const router       = express.Router();
+const api          = require('api');
+const BaseApiError = require('api/exceptions/ApiError');
+
+const onError = (err, res) => {
+	if (err instanceof BaseApiError) {
+		const errObj = err.toObject();
+
+		return res
+			.status(errObj.status)
+			.json(errObj);
+	}
+
+	console.error('err', err.toString());
+};
 
 //list
-router.get('', (req, res) => {
-	console.log('list');
-	res.end();
+router.get('', async (req, res) => {
+	try {
+		const bookApi = new api.Book();
+		const result = await bookApi.list();
+		res.status(200).json(result);
+	} catch (err) {
+		onError(err, res);
+	}
 });
 
 router.get('/create', async (req, res) => {
-	const body = req.body || req.query;
-
 	try {
-		const newBook = await m.Book.byObject(body).save();
-		res.status(200).json(null, newBook);
+		const body    = req.query;
+		const bookApi = new api.Book();
+		const result  = await bookApi.create(body);
 	} catch (err) {
-		console.error(err);
-		res.status(400).json(err);
+		onError(err, res);
 	}
 });
 

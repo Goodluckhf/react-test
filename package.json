@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3011",
   "dependencies": {
+    "better-validator": "^2.1.7",
     "body-parser": "~1.18.2",
     "colors": "^1.1.2",
     "cookie-parser": "~1.4.3",
@@ -16,7 +17,8 @@
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-scripts": "1.0.17",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "validator": "^9.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
